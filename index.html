@@ -5,21 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Consultoria de Investimentos</title>
   <meta name="description" content="Agende sua consultoria de investimentos com um especialista. Vamos conversar!" />
+
   <style>
     :root {
       --bg-color: #0b0c10;
       --card-color: #14161a;
-      --button-color: #ff5c4e; /* Cor mais forte para o botão */
-      --text-color: #ffffff;
+      --button-color: #4da3ff;
+      --text-color: #eaf0ff;
       --muted-color: #aeb4be;
-      --highlight-color: #4da3ff; /* Cor de destaque para links */
+      --button-hover-color: #2f8cf7;
     }
 
     body {
       margin: 0;
       background: var(--bg-color);
       color: var(--text-color);
-      font-family: 'Segoe UI', Roboto, Ubuntu, Arial, sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
       line-height: 1.45;
     }
 
@@ -34,31 +35,28 @@
       padding: 0 20px;
       flex-direction: column;
       position: relative;
-      border-bottom: 4px solid var(--highlight-color); /* Linha de destaque abaixo */
     }
 
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6); /* Ajustei a opacidade para mais contraste */
+      background: rgba(0, 0, 0, 0.6);
     }
 
     .content {
       z-index: 1;
       max-width: 800px;
       margin: 0 auto;
-      padding: 30px;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
       font-weight: bold;
-      color: var(--highlight-color);
     }
 
     p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: 20px;
       color: var(--muted-color);
     }
@@ -68,7 +66,6 @@
       border-radius: 10px;
       padding: 30px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      margin-bottom: 30px;
     }
 
     input, select, textarea {
@@ -82,7 +79,7 @@
     }
 
     input:focus, select:focus, textarea:focus {
-      border-color: var(--highlight-color);
+      border-color: var(--button-color);
       box-shadow: 0 0 5px rgba(77, 163, 255, 0.3);
     }
 
@@ -95,18 +92,15 @@
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      transition: all 0.3s ease-in-out;
     }
 
     .btn:hover {
-      background: #e04e33;
-      transform: scale(1.05);
+      background: var(--button-hover-color);
     }
 
     .video-container {
       margin-top: 30px;
       text-align: center;
-      color: var(--text-color);
     }
 
     iframe {
@@ -115,6 +109,31 @@
       height: 450px;
       border: none;
       border-radius: 10px;
+    }
+
+    .calendar-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .calendar-placeholder {
+      width: 100%;
+      max-width: 800px;
+      height: 350px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      margin: 20px 0;
+      display: block;
+    }
+
+    .calendar-message {
+      font-size: 1rem;
+      color: var(--muted-color);
+    }
+
+    .calendar-text {
+      color: var(--text-color);
+      font-weight: bold;
     }
 
     @media (max-width: 768px) {
@@ -127,6 +146,9 @@
       }
     }
   </style>
+
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </head>
 <body>
 
@@ -146,6 +168,13 @@
         </form>
       </div>
 
+      <!-- Calendário Placeholder -->
+      <div class="calendar-container">
+        <p class="calendar-message">O calendário ficará disponível após o preenchimento dos dados acima.</p>
+        <div class="calendar-placeholder"></div>
+        <p class="calendar-text">Após preencher os dados e clicar em "Quero agendar", o calendário estará liberado para você agendar a reunião.</p>
+      </div>
+
       <div class="video-container">
         <h2>Assista ao nosso vídeo sobre investimentos</h2>
         <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -158,6 +187,20 @@
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
       alert("Obrigado pelo envio! Vamos agendar sua consultoria.");
+
+      // Enable the calendar (placeholder removed and Calendly shown)
+      const calendarContainer = document.querySelector('.calendar-placeholder');
+      const message = document.querySelector('.calendar-text');
+      calendarContainer.style.background = 'none'; // Reveal the calendar
+      message.innerHTML = "Agora você pode agendar sua consulta diretamente no Calendly!";
+
+      // Open Calendly in Portuguese
+      Calendly.initInlineWidget({
+        url: 'https://calendly.com/bolsaparaagro/30min?lang=pt-br', // Calendly in Portuguese
+        parentElement: calendarContainer,
+        prefill: {},
+        utm: {}
+      });
     });
   </script>
 
