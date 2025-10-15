@@ -19,7 +19,7 @@
 
     body {
       margin: 0;
-      padding-top: 80px; /* Ajuste para garantir espaço adequado */
+      padding-top: 80px;
       background: var(--bg-color);
       color: var(--text-color);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
@@ -104,25 +104,10 @@
       padding: 20px;
       background: var(--card-color);
       border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
       display: none; /* Calendário inicialmente invisível */
-    }
-
-    .calendar-disabled {
-      width: 100%;
-      height: 60px;
-      background: #444;
-      color: var(--muted-color);
-      border-radius: 10px;
-      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-size: 1rem;
-      margin-top: 20px;
-      cursor: not-allowed;
     }
 
     .calendar-enabled {
@@ -208,16 +193,14 @@
   </div>
 
   <script>
-    // Handle form submission (for now we just show a basic alert)
+    // Handle form submission
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
-
-      // Enable the calendar once the form is submitted
+      
+      // Show the calendar after the form is submitted
       document.getElementById('calendar').style.display = 'block'; // Show the calendar
-
-      // Hide the "calendar disabled" message
-      document.querySelector('.calendar-disabled').style.display = 'none';
-
+      document.getElementById('submit-btn').disabled = true; // Disable the button after submission
+      
       alert("Ótimo! Agora, vamos para o calendário!");
     });
 
