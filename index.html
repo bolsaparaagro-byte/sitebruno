@@ -1,120 +1,158 @@
-<style>
-  :root {
-    --bg-color: #0b0c10;
-    --card-color: #14161a;
-    --button-color: #4da3ff;
-    --text-color: #eaf0ff;
-    --muted-color: #aeb4be;
-  }
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consultoria de Investimentos</title>
+  <meta name="description" content="Agende sua consultoria de investimentos com um especialista. Vamos conversar!" />
 
-  body {
-    padding-top: 100px; /* Novo espaçamento */
-    margin: 0;
-    background: var(--bg-color);
-    color: var(--text-color);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.45;
-    
-  }
+  <style>
+    :root {
+      --bg-color: #0b0c10;
+      --card-color: #14161a;
+      --button-color: #4da3ff;
+      --text-color: #eaf0ff;
+      --muted-color: #aeb4be;
+    }
 
-  .hero {
-    height: 100vh;
-    background: url("sua-imagem-de-fundo.jpg") center/cover no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--text-color);
-    padding: 0 20px;
-    flex-direction: column;
-    position: relative;
-  }
+    body {
+      padding-top: 100px; /* Novo espaçamento */
+      margin: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.45;
+    }
 
-  .overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-  }
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--text-color);
+      padding: 0 20px;
+      flex-direction: column;
+      position: relative;
+    }
 
-  .content {
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-  }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
 
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
+    .content {
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-  p {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    color: var(--muted-color);
-  }
-
-  .form-container {
-    background: var(--card-color);
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  }
-
-  input, select, textarea {
-    width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    border: 1px solid var(--muted-color);
-    background: var(--bg-color);
-    color: var(--text-color);
-  }
-
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--button-color);
-    box-shadow: 0 0 5px rgba(77, 163, 255, 0.3);
-  }
-
-  .btn {
-    background: var(--button-color);
-    color: #fff;
-    padding: 14px 18px;
-    font-weight: bold;
-    font-size: 16px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-  }
-
-  .btn:hover {
-    background: #2f8cf7;
-  }
-
-  .video-container {
-    margin-top: 30px;
-    text-align: center;
-  }
-
-  iframe {
-    width: 100%;
-    max-width: 800px;
-    height: 450px;
-    border: none;
-    border-radius: 10px;
-  }
-
-  @media (max-width: 768px) {
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: var(--muted-color);
     }
 
     .form-container {
-      padding: 20px;
+      background: var(--card-color);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     }
-  }
-</style>
 
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: 1px solid var(--muted-color);
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
 
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--button-color);
+      box-shadow: 0 0 5px rgba(77, 163, 255, 0.3);
+    }
 
+    .btn {
+      background: var(--button-color);
+      color: #fff;
+      padding: 14px 18px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
 
+    .btn:hover {
+      background: #2f8cf7;
+    }
+
+    .video-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .form-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Consultoria de Investimentos</h1>
+      <p>Transforme seu dinheiro em liberdade. Agende sua consultoria de 55 minutos agora mesmo!</p>
+
+      <div class="form-container">
+        <form id="contact-form">
+          <input type="text" name="nome" placeholder="Seu nome" required>
+          <input type="email" name="email" placeholder="Seu melhor e-mail" required>
+          <input type="tel" name="telefone" placeholder="Seu telefone" required>
+          <input type="text" name="valor" placeholder="Quanto você tem para investir?" required>
+          <button type="submit" class="btn">Quero agendar</button>
+        </form>
+      </div>
+      
+      <div class="video-container">
+        <h2>Assista ao nosso vídeo sobre investimentos</h2>
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Handle form submission (for now we just show a basic alert)
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("Obrigado pelo envio! Vamos agendar sua consultoria.");
+    });
+  </script>
+
+</body>
+</html>
