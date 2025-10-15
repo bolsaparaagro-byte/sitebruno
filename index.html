@@ -14,6 +14,7 @@
       --text-color: #eaf0ff;
       --muted-color: #aeb4be;
       --button-hover-color: #2f8cf7;
+      --disabled-color: #aeb4be;
     }
 
     body {
@@ -98,6 +99,11 @@
       background: var(--button-hover-color);
     }
 
+    .btn:disabled {
+      background: var(--disabled-color);
+      cursor: not-allowed;
+    }
+
     .video-container {
       margin-top: 30px;
       text-align: center;
@@ -136,6 +142,22 @@
       font-weight: bold;
     }
 
+    .calendar-tooltip {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--button-color);
+      color: #fff;
+      padding: 5px;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .calendar-placeholder:hover + .calendar-tooltip {
+      display: block;
+    }
+
     @media (max-width: 768px) {
       h1 {
         font-size: 2rem;
@@ -164,7 +186,7 @@
           <input type="email" name="email" placeholder="Seu melhor e-mail" required>
           <input type="tel" name="telefone" placeholder="Seu telefone" required>
           <input type="text" name="valor" placeholder="Quanto você tem para investir?" required>
-          <button type="submit" class="btn">Quero agendar</button>
+          <button type="submit" class="btn" id="submit-btn" disabled>Quero agendar</button>
         </form>
       </div>
 
@@ -173,6 +195,7 @@
         <p class="calendar-message">O calendário ficará disponível após o preenchimento dos dados acima.</p>
         <div class="calendar-placeholder"></div>
         <p class="calendar-text">Após preencher os dados e clicar em "Quero agendar", o calendário estará liberado para você agendar a reunião.</p>
+        <div class="calendar-tooltip">Clique para agendar sua reunião.</div>
       </div>
 
       <div class="video-container">
@@ -183,8 +206,25 @@
   </div>
 
   <script>
+    // Verifica se os campos do formulário estão preenchidos para habilitar o botão "Quero agendar"
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('input', function() {
+      const nome = form.nome.value.trim();
+      const email = form.email.value.trim();
+      const telefone = form.telefone.value.trim();
+      const valor = form.valor.value.trim();
+
+      if (nome && email && telefone && valor) {
+        submitBtn.disabled = false;
+      } else {
+        submitBtn.disabled = true;
+      }
+    });
+
     // Handle form submission (for now we just show a basic alert)
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
       alert("Obrigado pelo envio! Vamos agendar sua consultoria.");
 
