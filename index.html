@@ -1,261 +1,115 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Consultoria de Investimentos</title>
-  <meta name="description" content="Agende sua consultoria de investimentos com um especialista. Vamos conversar!" />
+<style>
+  :root {
+    --bg-color: #0b0c10;
+    --card-color: #14161a;
+    --button-color: #4da3ff;
+    --text-color: #eaf0ff;
+    --muted-color: #aeb4be;
+  }
 
-  <style>
-    :root {
-      --bg-color: #0b0c10;
-      --card-color: #14161a;
-      --button-color: #4da3ff;
-      --text-color: #eaf0ff;
-      --muted-color: #aeb4be;
-      --button-hover-color: #2f8cf7;
-      --disabled-color: #aeb4be;
-    }
+  body {
+    margin: 0;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.45;
+  }
 
-    body {
-      margin: 0;
-      background: var(--bg-color);
-      color: var(--text-color);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.45;
-      overflow-x: hidden;
-    }
+  .hero {
+    height: 100vh;
+    background: url("sua-imagem-de-fundo.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-color);
+    padding: 0 20px;
+    flex-direction: column;
+    position: relative;
+    margin-top: 50px; /* Aqui adicionamos um espaço no topo */
+  }
 
-    .hero {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background: url("sua-imagem-de-fundo.jpg") center/cover no-repeat;
-      height: 100vh;
-      width: 100%;
-      position: relative;
-      text-align: center;
-      padding: 0 20px;
-      box-sizing: border-box;
-    }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-    }
+  .content {
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
 
-    .content {
-      z-index: 1;
-      max-width: 100%;
-      width: 100%;
-      padding: 20px;
-      box-sizing: border-box;
-    }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
 
+  p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: var(--muted-color);
+  }
+
+  .form-container {
+    background: var(--card-color);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--muted-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--button-color);
+    box-shadow: 0 0 5px rgba(77, 163, 255, 0.3);
+  }
+
+  .btn {
+    background: var(--button-color);
+    color: #fff;
+    padding: 14px 18px;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: #2f8cf7;
+  }
+
+  .video-container {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  iframe {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    border: none;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 768px) {
     h1 {
       font-size: 2rem;
-      margin-bottom: 10px;
-      font-weight: bold;
-      line-height: 1.2;
-    }
-
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-      color: var(--muted-color);
     }
 
     .form-container {
-      background: var(--card-color);
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      padding: 20px;
     }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 12px 15px;
-      margin-bottom: 15px;
-      border-radius: 10px;
-      border: 1px solid var(--muted-color);
-      background: var(--bg-color);
-      color: var(--text-color);
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--button-color);
-      box-shadow: 0 0 5px rgba(77, 163, 255, 0.3);
-    }
-
-    .btn {
-      background: var(--button-color);
-      color: #fff;
-      padding: 14px 18px;
-      font-weight: bold;
-      font-size: 16px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background: var(--button-hover-color);
-    }
-
-    .btn:disabled {
-      background: var(--disabled-color);
-      cursor: not-allowed;
-    }
-
-    .video-container {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    iframe {
-      width: 100%;
-      max-width: 800px;
-      height: 450px;
-      border: none;
-      border-radius: 10px;
-    }
-
-    .calendar-container {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .calendar-placeholder {
-      width: 100%;
-      max-width: 800px;
-      height: 350px;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      margin: 20px 0;
-      display: block;
-    }
-
-    .calendar-message {
-      font-size: 1rem;
-      color: var(--muted-color);
-    }
-
-    .calendar-text {
-      color: var(--text-color);
-      font-weight: bold;
-    }
-
-    .calendar-tooltip {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: var(--button-color);
-      color: #fff;
-      padding: 5px;
-      font-size: 0.9rem;
-      border-radius: 5px;
-      display: none;
-    }
-
-    .calendar-placeholder:hover + .calendar-tooltip {
-      display: block;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-
-      .form-container {
-        padding: 20px;
-      }
-
-      .video-container iframe {
-        height: 250px;
-      }
-
-      .calendar-placeholder {
-        height: 300px;
-      }
-    }
-  </style>
-
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-</head>
-<body>
-
-  <div class="hero">
-    <div class="overlay"></div>
-    <div class="content">
-      <h1>Consultoria de Investimentos</h1>
-      <p>Transforme seu dinheiro em liberdade. Agende sua consultoria de 55 minutos agora mesmo!</p>
-
-      <div class="form-container">
-        <form id="contact-form">
-          <input type="text" name="nome" placeholder="Seu nome" required>
-          <input type="email" name="email" placeholder="Seu melhor e-mail" required>
-          <input type="tel" name="telefone" placeholder="Seu telefone" required>
-          <input type="text" name="valor" placeholder="Quanto você tem para investir?" required>
-          <button type="submit" class="btn" id="submit-btn" disabled>Quero agendar</button>
-        </form>
-      </div>
-
-      <!-- Calendário Placeholder -->
-      <div class="calendar-container">
-        <p class="calendar-message">O calendário ficará disponível após o preenchimento dos dados acima.</p>
-        <div class="calendar-placeholder"></div>
-        <p class="calendar-text">Após preencher os dados e clicar em "Quero agendar", o calendário estará liberado para você agendar a reunião.</p>
-        <div class="calendar-tooltip">Clique para agendar sua reunião.</div>
-      </div>
-
-      <div class="video-container">
-        <h2>Assista ao nosso vídeo sobre investimentos</h2>
-        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Verifica se os campos do formulário estão preenchidos para habilitar o botão "Quero agendar"
-    const form = document.getElementById('contact-form');
-    const submitBtn = document.getElementById('submit-btn');
-
-    form.addEventListener('input', function() {
-      const nome = form.nome.value.trim();
-      const email = form.email.value.trim();
-      const telefone = form.telefone.value.trim();
-      const valor = form.valor.value.trim();
-
-      if (nome && email && telefone && valor) {
-        submitBtn.disabled = false;
-      } else {
-        submitBtn.disabled = true;
-      }
-    });
-
-    // Handle form submission (for now we just show a basic alert)
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert("Obrigado pelo envio! Vamos agendar sua consultoria.");
-
-      // Enable the calendar (placeholder removed and Calendly shown)
-      const calendarContainer = document.querySelector('.calendar-placeholder');
-      const message = document.querySelector('.calendar-text');
-      calendarContainer.style.background = 'none'; // Reveal the calendar
-      message.innerHTML = "Agora você pode agendar sua consulta diretamente no Calendly!";
-
-      // Open Calendly in Portuguese
-      Calendly.initInlineWidget({
-        url: 'https://calendly.com/bolsaparaagro/30min?lang=pt-br', // Calendly in Portuguese
-        parentElement: calendarContainer,
-        prefill: {},
-        utm: {}
-      });
-    });
-  </script>
-
-</body>
-</html>
+  }
+</style>
