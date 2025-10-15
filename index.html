@@ -54,7 +54,6 @@
       font-size: 2.5rem;
       margin-bottom: 10px;
       font-weight: bold;
-      visibility: visible;
     }
 
     p {
@@ -109,6 +108,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      display: none; /* Calendário inicialmente invisível */
     }
 
     .calendar-disabled {
@@ -190,9 +190,9 @@
         </form>
       </div>
 
-      <div class="calendar-container">
-        <div class="calendar-disabled">
-          O calendário ficará disponível após o preenchimento dos dados acima.
+      <div class="calendar-container" id="calendar">
+        <div class="calendar-enabled" onclick="openCalendly()">
+          Agendar reunião agora
         </div>
       </div>
 
@@ -208,34 +208,37 @@
   </div>
 
   <script>
-    // Enable the button when all form fields are filled
-    const form = document.getElementById('contact-form');
-    const submitBtn = document.getElementById('submit-btn');
+    // Handle form submission (for now we just show a basic alert)
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    form.addEventListener('input', function() {
-      const nome = form.nome.value.trim();
-      const email = form.email.value.trim();
-      const telefone = form.telefone.value.trim();
-      const valor = form.valor.value.trim();
+      // Enable the calendar once the form is submitted
+      document.getElementById('calendar').style.display = 'block'; // Show the calendar
+
+      // Hide the "calendar disabled" message
+      document.querySelector('.calendar-disabled').style.display = 'none';
+
+      alert("Ótimo! Agora, vamos para o calendário!");
+    });
+
+    // Enabling the "Quero agendar" button when all fields are filled
+    document.getElementById('contact-form').addEventListener('input', function() {
+      const nome = document.querySelector('[name="nome"]').value;
+      const email = document.querySelector('[name="email"]').value;
+      const telefone = document.querySelector('[name="telefone"]').value;
+      const valor = document.querySelector('[name="valor"]').value;
 
       if (nome && email && telefone && valor) {
-        submitBtn.disabled = false;
+        document.getElementById('submit-btn').disabled = false;
       } else {
-        submitBtn.disabled = true;
+        document.getElementById('submit-btn').disabled = true;
       }
     });
 
-    // Handle form submission
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      // Hide the calendar placeholder and show the enabled version
-      document.querySelector('.calendar-disabled').style.display = 'none';
-      document.querySelector('.calendar-enabled').style.display = 'flex';
-
-      // Simulate opening the Calendly after form submission
-      alert("Obrigado pelo envio! Vamos agendar sua consultoria.");
-    });
+    // Function to open Calendly (this will be implemented with the Calendly link you provide)
+    function openCalendly() {
+      window.location.href = "https://calendly.com/bolsaparaagro/30min"; // Replace with your Calendly link
+    }
   </script>
 
 </body>
