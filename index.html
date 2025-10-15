@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Consultoria de Investimentos</title>
   <meta name="description" content="Agende sua consultoria de investimentos com um especialista. Vamos conversar!" />
 
@@ -23,19 +23,21 @@
       color: var(--text-color);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
       line-height: 1.45;
+      overflow-x: hidden;
     }
 
     .hero {
-      height: 100vh;
-      background: url("sua-imagem-de-fundo.jpg") center/cover no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      color: var(--text-color);
-      padding: 0 20px;
       flex-direction: column;
+      background: url("sua-imagem-de-fundo.jpg") center/cover no-repeat;
+      height: 100vh;
+      width: 100%;
       position: relative;
+      text-align: center;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
 
     .overlay {
@@ -46,14 +48,17 @@
 
     .content {
       z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 100%;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin-bottom: 10px;
       font-weight: bold;
+      line-height: 1.2;
     }
 
     p {
@@ -160,11 +165,19 @@
 
     @media (max-width: 768px) {
       h1 {
-        font-size: 2rem;
+        font-size: 1.6rem;
       }
 
       .form-container {
         padding: 20px;
+      }
+
+      .video-container iframe {
+        height: 250px;
+      }
+
+      .calendar-placeholder {
+        height: 300px;
       }
     }
   </style>
