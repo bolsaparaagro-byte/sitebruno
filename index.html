@@ -172,6 +172,63 @@
       </form>
     </section>
 
+<script>
+  // Habilita o botão somente quando todos os campos têm algo
+  const form = document.getElementById('leadForm');
+  const submitBtn = document.getElementById('submitBtn');
+  form.addEventListener('input', () => {
+    const nome = form.nome.value.trim();
+    const email = form.email.value.trim();
+    const tel   = form.telefone.value.trim();
+    const valor = form.valor.value.trim();
+    submitBtn.disabled = !(nome && email && tel && valor);
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Some com o botão para evitar clique duplo
+    submitBtn.style.display = 'none';
+
+    // Mostra a área do Calendly
+    const calWrap = document.getElementById('calendarWrap');
+    calWrap.style.display = 'block';
+
+    // Coleta dados do formulário
+    const nome  = form.nome.value.trim();
+    const email = form.email.value.trim();
+
+    // URL base do evento (sem name/email na query)
+    const url =
+      "https://calendly.com/bolsaparaagro/30min?locale=pt-BR&hide_event_type_details=1&primary_color=4da3ff";
+
+    const parent = document.getElementById('calendly-embed');
+    parent.innerHTML = ""; // limpa antes de recriar
+
+    // Inicializa o widget assim que o script do Calendly estiver pronto
+    const init = () => {
+      if (window.Calendly && Calendly.initInlineWidget) {
+        Calendly.initInlineWidget({
+          url,
+          parentElement: parent,
+          prefill: {
+            // Estes campos fazem o pré-preenchimento funcionar
+            name: nome,
+            email: email,
+          },
+          utm: {} // opcional
+        });
+
+        // rola até o calendário
+        calWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        // tenta novamente rapidinho se ainda não carregou
+        setTimeout(init, 120);
+      }
+    };
+    init();
+  });
+</script>
     <!-- CALENDÁRIO (aparece após enviar o form) -->
     <section id="calendarWrap" aria-label="Agendamento">
       <div id="calBox">
@@ -192,61 +249,7 @@
     <footer>© Seu Nome — Assessoria de Investimentos</footer>
   </main>
 
-  <script>
-    // Habilita o botão somente quando todos os campos têm algo
-    const form = document.getElementById('leadForm');
-    const submitBtn = document.getElementById('submitBtn');
-    form.addEventListener('input', () => {
-      const nome = form.nome.value.trim();
-      const email = form.email.value.trim();
-      const tel   = form.telefone.value.trim();
-      const valor = form.valor.value.trim();
-      submitBtn.disabled = !(nome && email && tel && valor);
-    });
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      // Some com o botão para evitar clique duplo/erro
-      submitBtn.style.display = 'none';
-
-      // Mostra área do Calendly
-      const calWrap = document.getElementById('calendarWrap');
-      calWrap.style.display = 'block';
-
-      // Pré-preenche nome e e-mail no Calendly e força PT-BR
-      const nome  = form.nome.value.trim();
-      const email = form.email.value.trim();
-
-      const base = "https://calendly.com/bolsaparaagro/30min";
-      const params = new URLSearchParams({
-        locale: 'pt-BR',
-        hide_event_type_details: '1',
-        primary_color: '4da3ff',
-        ...(nome  ? { name: nome } : {}),
-        ...(email ? { email: email } : {})
-      });
-
-      const url = `${base}?${params.toString()}`;
-      const parent = document.getElementById('calendly-embed');
-      parent.innerHTML = ""; // limpa antes de recriar
-
-      // Garante que o script do Calendly já carregou
-      const init = () => {
-        if (window.Calendly && Calendly.initInlineWidget) {
-          Calendly.initInlineWidget({
-            url,
-            parentElement: parent
-          });
-          // rola até o calendário
-          calWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          // tenta novamente rapidinho se ainda não carregou
-          setTimeout(init, 120);
-        }
-      };
-      init();
-    });
-  </script>
 </body>
 </html>
+
