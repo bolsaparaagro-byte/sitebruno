@@ -182,7 +182,7 @@
       </div>
 
       <p class="footer-text">
-        Após preencher os dados e clicar em "Agendar reunião agora", o calendário estará liberado para você agendar a reunião.
+        Após preencher os dados e clicar em "Quero agendar", o calendário estará liberado para você agendar a reunião.
       </p>
 
       <div class="video-container">
@@ -197,10 +197,9 @@
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Show the calendar after the form is submitted
+      // Hide the "Quero agendar" button and show the calendar
+      document.getElementById('submit-btn').style.display = 'none';
       document.getElementById('calendar').style.display = 'block'; // Show the calendar
-      document.getElementById('submit-btn').disabled = true; // Disable the button after submission
-      
       alert("Ótimo! Agora, vamos para o calendário!");
     });
 
@@ -226,4 +225,3 @@
 
 </body>
 </html>
-
