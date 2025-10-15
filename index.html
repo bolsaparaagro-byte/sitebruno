@@ -18,8 +18,8 @@
     }
 
     body {
-      padding-top: 280px; /* Novo espaçamento */
       margin: 0;
+      padding-top: 80px; /* Ajuste para garantir espaço adequado */
       background: var(--bg-color);
       color: var(--text-color);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
@@ -54,6 +54,7 @@
       font-size: 2.5rem;
       margin-bottom: 10px;
       font-weight: bold;
+      visibility: visible;
     }
 
     p {
@@ -185,7 +186,7 @@
           <input type="email" name="email" placeholder="Seu melhor e-mail" required>
           <input type="tel" name="telefone" placeholder="Seu telefone" required>
           <input type="text" name="valor" placeholder="Quanto você tem para investir?" required>
-          <button type="submit" class="btn">Quero agendar</button>
+          <button type="submit" class="btn" id="submit-btn" disabled>Quero agendar</button>
         </form>
       </div>
 
@@ -207,20 +208,35 @@
   </div>
 
   <script>
-    // Handle form submission (for now we just show a basic alert)
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
+    // Enable the button when all form fields are filled
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('input', function() {
+      const nome = form.nome.value.trim();
+      const email = form.email.value.trim();
+      const telefone = form.telefone.value.trim();
+      const valor = form.valor.value.trim();
+
+      if (nome && email && telefone && valor) {
+        submitBtn.disabled = false;
+      } else {
+        submitBtn.disabled = true;
+      }
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Simulate opening the Calendly after the form is submitted
+      // Hide the calendar placeholder and show the enabled version
       document.querySelector('.calendar-disabled').style.display = 'none';
       document.querySelector('.calendar-enabled').style.display = 'flex';
 
-      alert("Ótimo! Agora, vamos para o calendário!.");
+      // Simulate opening the Calendly after form submission
+      alert("Obrigado pelo envio! Vamos agendar sua consultoria.");
     });
   </script>
 
 </body>
 </html>
-
-
-
