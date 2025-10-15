@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agenda de Consultoria — Investimentos</title>
+  <meta name="description" content="Agende uma reunião de 55 minutos. Horários disponíveis nos próximos 14 dias." />
+  <style>
+    :root{ --bg:#0b0c10; --card:#14161a; --muted:#aeb4be; --text:#eaf0ff; --blue:#4da3ff; --blue-strong:#2f8cf7; --border:#242833; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;line-height:1.45}
+    a{color:var(--blue);text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+    .hero{height:33vh;min-height:260px;max-height:420px;display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:center;padding:22px 0 8px}
+    .cover{position:relative;width:100%;height:100%;border-radius:18px;overflow:hidden;border:1px solid var(--border);background:#0f1116}
+    .cover::before{content:"";position:absolute;inset:0;background:
+      linear-gradient(120deg, rgba(25,29,38,.7), rgba(25,29,38,.25)),
+      url("sua-capa.jpg") center/cover no-repeat;filter:saturate(1.1)}
+    .hero-cta{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px 20px 16px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .badge{display:inline-block;background:#0f1217;border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:12px;color:var(--muted);margin-bottom:8px}
+    h1{margin:0 0 6px;font-size:28px;letter-spacing:.2px}
+    .sub{margin:0 0 14px;color:var(--muted)}
+
+    form{display:grid;gap:12px;margin-top:6px}
+    label{font-size:13px;color:var(--muted)}
+    input{width:100%;background:#0e1116;border:1px solid var(--border);color:var(--text);border-radius:12px;padding:12px 14px;font-size:16px;outline:none}
+    input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(77,163,255,.18)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn{background:var(--blue);color:#061018;border:none;border-radius:12px;padding:14px 18px;font-weight:700;font-size:16px;cursor:pointer}
+    .btn:hover{background:var(--blue-strong)}
+    .consent{font-size:12px;color:var(--muted)}
+    .error{font-size:13px;color:#ff8585;display:none}
+
+    .modal{display:none;position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.7);backdrop-filter:blur(2px);align-items:center;justify-content:center;padding:20px}
+    .modal-inner{width:min(1000px,96vw);height:min(90vh,760px);background:var(--card);border:1px solid var(--border);border-radius:18px;padding:10px;position:relative}
+    .modal-close{position:absolute;top:8px;right:8px;background:transparent;border:1px solid var(--border);color:var(--muted);width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:20px;line-height:0}
+    .calendly-inline-widget{width:100%;height:100%;min-height:620px}
+
+    @media (max-width:960px){
+      .hero{grid-template-columns:1fr;height:auto;max-height:none}
+      .cover{height:200px}
+      .row{grid-template-columns:1fr}
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const p = new URLSearchParams(location.search);
+      const set = (n,v) => { const el=document.querySelector(`[name="${n}"]`); if(el) el.value = v||""; };
+      set("utm_source", p.get("utm_source"));
+      set("utm_medium", p.get("utm_medium"));
+      set("utm_campaign", p.get("utm_campaign"));
+      set("utm_content", p.get("utm_content"));
+      set("referrer", document.referrer);
+    });
+  </script>
+
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="cover" aria-label="Sua capa estilo YouTube"></div>
+
+      <div class="hero-cta">
+        <span class="badge">Consultoria de Investimentos</span>
+        <h1>Agenda seletiva para quem quer fazer o dinheiro trabalhar</h1>
+        <p class="sub">Preencha seus dados para ver meus horários livres nos próximos 14 dias e agendar uma reunião de <strong>55 min</strong>.</p>
+
+        <!-- IMPORTANTE: novalidate -->
+        <form name="lead-topo" method="POST" data-netlify="true" novalidate onsubmit="handleSubmit(event)">
+          <input type="hidden" name="form-name" value="lead-topo">
+          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium">
+          <input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content">
+          <input type="hidden" name="referrer">
+
+          <div class="row">
+            <div>
+              <label for="nome">Nome</label>
+              <input id="nome" type="text" name="nome" placeholder="Seu nome">
+            </div>
+            <div>
+              <label for="email">E-mail</label>
+              <input id="email" type="email" name="email" placeholder="voce@exemplo.com">
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="tel">Telefone / WhatsApp (opcional)</label>
+              <input id="tel" type="tel" name="telefone" placeholder="(DDD) 9 0000-0000">
+            </div>
+            <div>
+              <label for="valor">Valor disponível (hoje) para investir</label>
+              <input id="valor" type="text" name="valor" placeholder="Ex.: R$ 500.000">
+            </div>
+          </div>
+
+          <div class="error" id="formError">Por favor, preencha <b>Nome</b>, <b>E-mail</b> e <b>Valor disponível</b> para abrir o calendário.</div>
+
+          <label class="consent">
+            <input id="consent" type="checkbox">
+            Autorizo o uso dos meus dados para contato e agendamento (LGPD).
+          </label>
+
+          <button type="submit" class="btn">Quero agendar</button>
+          <p class="consent">Ao enviar, seus dados são salvos e o calendário abre em seguida.</p>
+        </form>
+      </div>
+    </section>
+
+    <p class="consent" style="margin:20px 0 28px">© Seu Nome — Assessoria de Investimentos. Segunda a sábado, 17h–21h e 12h–13h; sábados 8h–12h.</p>
+  </div>
+
+  <!-- MODAL Calendly -->
+  <div class="modal" id="calModal" aria-hidden="true" role="dialog" aria-label="Agendamento">
+    <div class="modal-inner">
+      <button class="modal-close" aria-label="Fechar" onclick="closeCalendly()">×</button>
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/bolsaparaagro/30min?hide_event_type_details=1&hide_gdpr_banner=1"
+           style="min-width:320px;height:100%;"></div>
+    </div>
+  </div>
+
+  <script>
+    function showError(msg){ const el=document.getElementById('formError'); if(el){el.innerHTML=msg||el.innerHTML; el.style.display='block';}}
+    function hideError(){ const el=document.getElementById('formError'); if(el) el.style.display='none'; }
+
+    async function handleSubmit(e){
+      e.preventDefault();
+      const form=e.target;
+      const data=new FormData(form);
+
+      const nome=(data.get('nome')||'').trim();
+      const email=(data.get('email')||'').trim();
+      const valor=(data.get('valor')||'').trim();
+      const consent=document.getElementById('consent')?.checked;
+
+      if(!nome || !email || !valor){ showError('Por favor, preencha <b>Nome</b>, <b>E-mail</b> e <b>Valor disponível</b>.'); return; }
+      if(!consent){ showError('Você precisa autorizar o uso dos dados para prosseguir.'); return; }
+      hideError();
+
+      // Garante o form-name no corpo
+      if(!data.get('form-name')) data.append('form-name', form.getAttribute('name'));
+
+      // Abre o Calendly imediatamente (sem esperar o fetch)
+      openCalendly();
+
+      // Envia em background pro Netlify Forms
+      const body=new URLSearchParams(data).toString();
+      fetch('/', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body})
+        .then(r=>{ if(!r.ok) console.warn('Netlify Forms respondeu', r.status); })
+        .catch(err=>{ console.error('Falha ao enviar para Netlify Forms', err); showError('Não conseguimos salvar seus dados agora. Você pode prosseguir com o agendamento e tentar novamente depois.'); });
+    }
+
+    function openCalendly(){
+      const modal=document.getElementById('calModal');
+      if(modal){ modal.style.display='flex'; modal.setAttribute('aria-hidden','false'); setTimeout(()=>document.querySelector('.modal-close')?.focus(),50); }
+    }
+    function closeCalendly(){
+      const modal=document.getElementById('calModal');
+      if(modal){ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); }
+      document.querySelector('form[name="lead-topo"]')?.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  </script>
+</body>
+</html>
