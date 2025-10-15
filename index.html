@@ -13,6 +13,8 @@
       --button-color: #4da3ff;
       --text-color: #eaf0ff;
       --muted-color: #aeb4be;
+      --btn-hover-color: #2f8cf7;
+      --border-color: #242833;
     }
 
     body {
@@ -94,7 +96,46 @@
     }
 
     .btn:hover {
-      background: #2f8cf7;
+      background: var(--btn-hover-color);
+    }
+
+    .calendar-container {
+      margin-top: 30px;
+      padding: 20px;
+      background: var(--card-color);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .calendar-disabled {
+      width: 100%;
+      height: 60px;
+      background: #444;
+      color: var(--muted-color);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+      margin-top: 20px;
+      cursor: not-allowed;
+    }
+
+    .calendar-enabled {
+      width: 100%;
+      height: 60px;
+      background: var(--button-color);
+      color: #fff;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+      margin-top: 20px;
+      cursor: pointer;
     }
 
     .video-container {
@@ -110,6 +151,12 @@
       border-radius: 10px;
     }
 
+    .footer-text {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: var(--muted-color);
+    }
+
     @media (max-width: 768px) {
       h1 {
         font-size: 2rem;
@@ -118,11 +165,14 @@
       .form-container {
         padding: 20px;
       }
+
+      .calendar-container {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-
   <div class="hero">
     <div class="overlay"></div>
     <div class="content">
@@ -138,7 +188,17 @@
           <button type="submit" class="btn">Quero agendar</button>
         </form>
       </div>
-      
+
+      <div class="calendar-container">
+        <div class="calendar-disabled">
+          O calendário ficará disponível após o preenchimento dos dados acima.
+        </div>
+      </div>
+
+      <p class="footer-text">
+        Após preencher os dados e clicar em "Quero agendar", o calendário estará liberado para você agendar a reunião.
+      </p>
+
       <div class="video-container">
         <h2>Assista ao nosso vídeo sobre investimentos</h2>
         <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -150,6 +210,11 @@
     // Handle form submission (for now we just show a basic alert)
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
+
+      // Simulate opening the Calendly after the form is submitted
+      document.querySelector('.calendar-disabled').style.display = 'none';
+      document.querySelector('.calendar-enabled').style.display = 'flex';
+
       alert("Obrigado pelo envio! Vamos agendar sua consultoria.");
     });
   </script>
